@@ -13,7 +13,11 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const itemsPerPage = 9;
+  const [totalValue, setTotalValue] = useState(0);
+  const [giveawayCount, setGiveawayCount] = useState(0);
+  const [topPrize, setTopPrize] = useState(0);
 
+  // Query API
   const fetchGiveaways = async () => {
     try {
       const url =
@@ -37,10 +41,34 @@ export default function Dashboard() {
     }
   };
 
+  // Fetch all giveaways on mount
   useEffect(() => {
     fetchGiveaways();
   }, []);
 
+  // Update stats based on selected platfrom
+  useEffect(() => {
+    if (giveaways.length === 0) {
+      setTotalValue(0);
+      setGiveawayCount(0);
+      setTopPrize(0);
+      return;
+    }
+
+    const values = giveaways.map((g) => {
+      const match = g.worth?.match(/\$([\d.]+)/);
+      return match ? parseFloat(match[1]) : 0;
+    });
+
+    const total = values.reduce((sum, val) => sum + val, 0);
+    const top = Math.max(...values);
+
+    setTotalValue(total);
+    setGiveawayCount(giveaways.length);
+    setTopPrize(top);
+  }, [giveaways]);
+
+  // Search by title
   useEffect(() => {
     if (searchQuery) {
       const filtered = giveaways.filter((giveaway) =>
@@ -52,6 +80,7 @@ export default function Dashboard() {
     }
   }, [searchQuery, giveaways]);
 
+  // Pagination
   const totalPages = Math.ceil(filteredGiveaways.length / itemsPerPage);
   const currentItems = filteredGiveaways.slice(
     (page - 1) * itemsPerPage,
@@ -63,13 +92,13 @@ export default function Dashboard() {
       {/* Stat Cards */}
       <Grid container spacing={2} mb={5}>
         <Grid item xs={12} sm={4}>
-          <StatCard stat="Total value" value="$1,000" />
+          <StatCard stat="Total value" value={`$${totalValue.toFixed(2)}`} />
         </Grid>
         <Grid item xs={12} sm={4}>
-          <StatCard stat="Giveaways Count" value="65" />
+          <StatCard stat="Giveaways Count" value={giveawayCount} />
         </Grid>
         <Grid item xs={12} sm={4}>
-          <StatCard stat="Top Prize" value="$120" />
+          <StatCard stat="Top Prize" value={`$${topPrize.toFixed(2)}`} />
         </Grid>
       </Grid>
 
