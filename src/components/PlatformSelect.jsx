@@ -16,8 +16,9 @@ function PlatformSelect({ value, setSelectedPlatform }) {
           value={value}
           label="Platform"
           onChange={handleChange}
+          renderValue={(selected) => (!selected ? "All Platforms" : selected)}
         >
-          <MenuItem key="all" value="all">
+          <MenuItem key="all" value="">
             all
           </MenuItem>
           {platforms.map((platform) => (

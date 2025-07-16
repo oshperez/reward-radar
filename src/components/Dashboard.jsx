@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, Paper, Box, Button, Stack } from "@mui/material";
+import { Grid, Box, Button, Stack } from "@mui/material";
 import StatCard from "./StatCard";
 import PlatformSelect from "./PlatformSelect";
 import SearchBox from "./SearchBox";
@@ -8,7 +8,9 @@ import GiveawayTable from "./GiveawayTable";
 
 export default function Dashboard() {
   const [giveaways, setGiveaways] = useState([]);
+  const [filteredGiveaways, setFilteredGiveaways] = useState([]);
   const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const itemsPerPage = 9;
 
@@ -18,7 +20,7 @@ export default function Dashboard() {
         "https://corsproxy.io/?" +
         encodeURIComponent(
           `https://www.gamerpower.com/api/giveaways${
-            selectedPlatform !== "all" ? `?platform=${selectedPlatform}` : ""
+            selectedPlatform ? `?platform=${selectedPlatform}` : ""
           }`
         );
 
@@ -39,8 +41,19 @@ export default function Dashboard() {
     fetchGiveaways();
   }, []);
 
-  const totalPages = Math.ceil(giveaways.length / itemsPerPage);
-  const currentItems = giveaways.slice(
+  useEffect(() => {
+    if (searchQuery) {
+      const filtered = giveaways.filter((giveaway) =>
+        giveaway.title.toLowerCase().includes(searchQuery.toLocaleLowerCase())
+      );
+      setFilteredGiveaways(filtered);
+    } else {
+      setFilteredGiveaways(giveaways);
+    }
+  }, [searchQuery, giveaways]);
+
+  const totalPages = Math.ceil(filteredGiveaways.length / itemsPerPage);
+  const currentItems = filteredGiveaways.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
@@ -63,7 +76,7 @@ export default function Dashboard() {
       {/* Filters and Table */}
       <Stack spacing={3}>
         <Stack direction="row" spacing={2}>
-          <SearchBox />
+          <SearchBox value={searchQuery} onChange={setSearchQuery} />
           <PlatformSelect
             value={selectedPlatform}
             setSelectedPlatform={setSelectedPlatform}
