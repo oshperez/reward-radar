@@ -42,11 +42,11 @@ The following **additional** features are implemented:
 Reward Radar - Dashboard - Watch Video
 
 <div>
-    <a href="https://www.loom.com/share/6cceafcd214b4a27bf602d3a22cd008c">
-      <p>Reward Radar - Dashboard - Watch Video</p>
+    <a href="https://www.loom.com/share/77cb9fada81b40bd8bffade33595ed48">
+      <p>Reward Radar - 16 July 2025 - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/6cceafcd214b4a27bf602d3a22cd008c">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/6cceafcd214b4a27bf602d3a22cd008c-856131e098dec13c-full-play.gif">
+    <a href="https://www.loom.com/share/77cb9fada81b40bd8bffade33595ed48">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/77cb9fada81b40bd8bffade33595ed48-8cda8e292173c6c4-full-play.gif">
     </a>
   </div>
 

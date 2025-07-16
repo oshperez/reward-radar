@@ -6,6 +6,7 @@ import SearchBox from "./SearchBox";
 import Pagination from "@mui/material/Pagination";
 import GiveawayTable from "./GiveawayTable";
 import TypeSelect from "./TypeSelect";
+import EmptyState from "./EmptyState";
 
 export default function Dashboard() {
   const [giveaways, setGiveaways] = useState([]);
@@ -92,7 +93,7 @@ export default function Dashboard() {
   );
 
   return (
-    <Box>
+    <Box sx={{ minHeight: "100vh" }}>
       {/* Stat Cards */}
       <Grid container spacing={2} mb={5}>
         <Grid item xs={12} sm={4}>
@@ -120,7 +121,11 @@ export default function Dashboard() {
           </Button>
         </Stack>
 
-        <GiveawayTable giveaways={currentItems} />
+        {filteredGiveaways.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <GiveawayTable giveaways={currentItems} />
+        )}
 
         {totalPages > 1 && (
           <Stack alignItems="center">
