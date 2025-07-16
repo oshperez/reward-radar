@@ -54,8 +54,6 @@ GIF created with [Loom](https://www.loom.com)
 
 ## Notes
 
-Describe any challenges encountered while building the app.
-
 The most challenging parts were:
 
 - Implementing a clean and responsive UI using Material UI components
