@@ -7,6 +7,7 @@ import Pagination from "@mui/material/Pagination";
 import GiveawayTable from "./GiveawayTable";
 import TypeSelect from "./TypeSelect";
 import EmptyState from "./EmptyState";
+import Charts from "./Charts";
 
 export default function Dashboard() {
   const [giveaways, setGiveaways] = useState([]);
@@ -107,8 +108,8 @@ export default function Dashboard() {
         </Grid>
       </Grid>
 
-      {/* Filters and Table */}
-      <Stack spacing={3}>
+      {/* Filters */}
+      <Stack spacing={3} mb={3}>
         <Stack direction="row" spacing={2}>
           <SearchBox value={searchQuery} onChange={setSearchQuery} />
           <PlatformSelect
@@ -120,24 +121,33 @@ export default function Dashboard() {
             Find Giveaways
           </Button>
         </Stack>
-
-        {filteredGiveaways.length === 0 ? (
-          <EmptyState />
-        ) : (
-          <GiveawayTable giveaways={currentItems} />
-        )}
-
-        {totalPages > 1 && (
-          <Stack alignItems="center">
-            <Pagination
-              count={totalPages}
-              page={page}
-              onChange={(e, value) => setPage(value)}
-              color="primary"
-            />
-          </Stack>
-        )}
       </Stack>
+
+      {/* Content and Charts */}
+      <Grid container spacing={3}>
+        <Grid size={8}>
+          {filteredGiveaways.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <GiveawayTable giveaways={currentItems} />
+          )}
+
+          {totalPages > 1 && (
+            <Stack alignItems="center" mt={2}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={(e, value) => setPage(value)}
+                color="primary"
+              />
+            </Stack>
+          )}
+        </Grid>
+
+        <Grid size={4} mt={4}>
+          <Charts giveaways={giveaways} />
+        </Grid>
+      </Grid>
     </Box>
   );
 }

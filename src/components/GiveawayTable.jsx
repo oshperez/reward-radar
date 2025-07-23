@@ -7,7 +7,6 @@ import {
   TableRow,
   Paper,
   Avatar,
-  Button,
   Typography,
   Chip,
 } from "@mui/material";
@@ -24,7 +23,6 @@ export default function GiveawayTable({ giveaways }) {
             <TableCell>Worth</TableCell>
             <TableCell>Platforms</TableCell>
             <TableCell>Type</TableCell>
-            <TableCell>Link</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -52,20 +50,10 @@ export default function GiveawayTable({ giveaways }) {
               <TableCell>
                 <Chip
                   label={g.type}
-                  color="secondary" // Use a single color here
+                  color="secondary"
                   size="small"
                   variant="outlined"
                 />
-              </TableCell>
-              <TableCell>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  href={g.open_giveaway_url}
-                  target="_blank"
-                >
-                  Visit
-                </Button>
               </TableCell>
             </TableRow>
           ))}

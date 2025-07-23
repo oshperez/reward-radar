@@ -7,7 +7,7 @@ function Layout() {
     <Box padding={5}>
       <Grid container spacing={4}>
         <Grid item size={3}>
-          <Paper variant="outlined" sx={{ height: "100%" }}>
+          <Paper variant="outlined" sx={{ height: "100%", minHeight: "90vh" }}>
             <Naviagation />
           </Paper>
         </Grid>
