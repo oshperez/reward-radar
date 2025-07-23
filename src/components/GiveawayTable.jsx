@@ -11,6 +11,7 @@ import {
   Typography,
   Chip,
 } from "@mui/material";
+import AppLink from "./AppLink";
 
 export default function GiveawayTable({ giveaways }) {
   return (
@@ -38,7 +39,13 @@ export default function GiveawayTable({ giveaways }) {
                 />
               </TableCell>
               <TableCell>
-                <Typography variant="body2">{g.title}</Typography>
+                <AppLink
+                  to={`/detail/${g.id}`}
+                  state={{ giveaway: g }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography variant="body2">{g.title}</Typography>
+                </AppLink>
               </TableCell>
               <TableCell>{g.worth}</TableCell>
               <TableCell>{g.platforms}</TableCell>

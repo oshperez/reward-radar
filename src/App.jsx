@@ -1,22 +1,17 @@
-import { Box, Grid, Paper } from "@mui/material";
-import Naviagation from "./components/Naviagation";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
+import { Routes, Route } from "react-router";
+import Layout from "./components/Layout";
+import GiveawayDetail from "./components/GiveawayDetail";
 
 function App() {
   return (
-    <Box padding={5}>
-      <Grid container spacing={4}>
-        <Grid item size={3}>
-          <Paper variant="outlined" sx={{ height: "100%" }}>
-            <Naviagation />
-          </Paper>
-        </Grid>
-        <Grid item size={9}>
-          <Dashboard />
-        </Grid>
-      </Grid>
-    </Box>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/detail/:id" element={<GiveawayDetail />} />
+      </Route>
+    </Routes>
   );
 }
 
