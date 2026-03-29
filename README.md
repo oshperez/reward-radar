@@ -17,9 +17,6 @@ The app displays free online giveaways and allows users to filter by platform, t
 
 ## Video Walkthrough
 
-Here's a walkthrough video:
-Here's a walkthrough video:
-
 <div>
     <a href="https://www.loom.com/share/756391de07244222ab1a6b1f8fd15e13">
       <p>Reward Radar - Watch Video</p>
@@ -33,4 +30,4 @@ GIF created with [Loom](https://www.loom.com)
 
 ## Notes
 
-The most challenging part was getting the routing to work properly, especially maintaining sidebar visibility and preserving the giveaway state between views.
+The **most challenging part** was getting the routing to work properly, especially maintaining sidebar visibility and preserving the giveaway state between views.
